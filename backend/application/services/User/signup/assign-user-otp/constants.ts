@@ -1,0 +1,2 @@
+export const EXPIRATION_VALIDITY_IN_MINUTES = 3;
+export const DEFAULT_MAX_RETRIES = 3;

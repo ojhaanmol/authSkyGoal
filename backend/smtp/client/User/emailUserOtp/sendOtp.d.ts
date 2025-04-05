@@ -1,0 +1,1 @@
+export type SendOtp = {email:string, otp: string}

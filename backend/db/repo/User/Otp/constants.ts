@@ -1,0 +1,1 @@
+export const OTP_STORE = 'otp_store';
