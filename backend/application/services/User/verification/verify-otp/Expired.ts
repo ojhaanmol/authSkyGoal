@@ -1,3 +1,3 @@
 export function Expired(expirationTime: number) {
-    return +new Date() < expirationTime;
+    return +new Date() > expirationTime;
 }

@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import emailOtpVerification, { EmailOtpVerificationError } from "../../../services/User/verification/verify-otp";
 import fetchOtpVerificationData from "../../../../db/repo/User/Otp/fetchOtpVerifivationData";
 import { otpVerificationSchema } from "./otpVerificationSchema";
-import { expiredOtp } from "./expiredOtp";
+import { reduceRetry } from "./reduceRetry";
 import { VERIFICATION_SUCCESSFULL } from "./constants";
 import validateUser from "../../../services/User/verification/validateUser";
 
@@ -23,7 +23,7 @@ export default async function verification(request: Request, response: Response)
         response.status(200).json({ message: VERIFICATION_SUCCESSFULL });
         
     } catch (error) {
-        await expiredOtp( error, userId );
+        await reduceRetry( error, userId );
         if( error instanceof EmailOtpVerificationError )
         response.status(410).json({ error: error.message });
         
