@@ -6,6 +6,7 @@ export type User = {
     mobileNumber: string,
     password: string,
     valid: boolean,
+    refreshToken: string,
 }
 
 export type AddAUserInDb = ( user: User ) => Promise<string>;

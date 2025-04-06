@@ -6,6 +6,8 @@ import generateAccessToken from "../../../services/User/login/issueTokens/genera
 import generateRefreshToken from "../../../services/User/login/issueTokens/generateRefreshToken";
 import verifyUser from "../../../services/User/login/validUser";
 import { userSchema } from "./userSchema";
+import addRefreshToken from "../../../../db/repo/User/Session/addRefreshToken";
+import create from "../../../services/User/login/session/create";
 
 export default async function login (request:Request, response:Response){
 
@@ -19,6 +21,9 @@ export default async function login (request:Request, response:Response){
 
     const accessToken = generateAccessToken( id )
     const refreshToken = generateRefreshToken( id );
+
+    const session = { user: {id, refreshToken}, addRefreshToken };
+    await create(session)
 
     response.json({
         accessToken,

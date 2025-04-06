@@ -6,4 +6,5 @@ export type User = {
     mobileNumber: string;
     password: string;
     valid: boolean;
+    refreshToken: string;
 }

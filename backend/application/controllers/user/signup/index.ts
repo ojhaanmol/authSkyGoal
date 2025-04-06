@@ -31,7 +31,16 @@ export default async function signup (request: Request, response: Response){
         otp
     });
 
-    await addAUser({ user:{...user, id, valid: false}, addAUserInDb, hashPassword });
+    await addAUser({
+        user:{
+            ...user,
+            id,
+            valid: false,
+            refreshToken: ""
+        }, 
+        addAUserInDb, 
+        hashPassword
+    });
 
     response.status(201).json({
         status: "success",
